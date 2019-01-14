@@ -57,9 +57,9 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
      
 * If you prefer service type loadbalancer to reach Grafana, edit the service grafana and replace service Type from ‘ClusterIp’ to ‘LoadBalancer’
  
-	`kubectl edit service granfana`
+	`kubectl edit service kube-prometheus-grafana`
  
 * Find the external IP address of the ‘grafana’ service
 	`kubectl get svc -n monitoring | grep grafana | awk '{print $4}' | awk -F , '{print $1}'`
  
-* Access `http://<external_IP>:3000` from the web console
+* Access `http://<external_IP>` from the web console
