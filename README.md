@@ -48,7 +48,7 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 		  diskformat: thin
 		  
  
-	· `Kubectl apply -f pks-storageclass.yaml`
+	· Kubectl apply -f pks-storageclass.yaml
  
 * Deploy tiller:
 
@@ -58,13 +58,13 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 
     kubectl create namespace monitoring
 
-* Install prometheus operator
+* Install prometheus from helm chart
 
-    helm install coreos/prometheus-operator --name prometheus-operator --namespace monitoring
-
-* Install kube-prometheus
-
-    helm install coreos/kube-prometheus --name kube-prometheus --set global.rbacEnable=true --namespace monitoring
+    helm install stable/prometheus --name prometheus --namespace monitoring
+    make sure following google repo is available
+    root@cli-vm:~/helm_rback# helm repo list
+    NAME    URL
+    stable  https://kubernetes-charts.storage.googleapis.com
 
      
 * If you prefer service type loadbalancer to reach Grafana, edit the service grafana and replace service Type from ‘ClusterIp’ to ‘LoadBalancer’
