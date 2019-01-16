@@ -26,21 +26,33 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
                 name: cluster-admin
                 apiGroup: ""
  
-  `Kubectl apply -f helm_tiller.yaml` 
+  Kubectl apply -f helm_tiller.yaml
   or 
   
-	`kubectl create serviceaccount --namespace kube-system tiller` 
-  `kubectl create clusterrolebinding tiller-clusterrolebinding --clusterrole=cluster-admin --serviceaccount=kube-system:tiller`
+  kubectl create serviceaccount --namespace kube-system tiller
+  kubectl create clusterrolebinding tiller-clusterrolebinding --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
   
-  `kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'`
+  kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 
+* Ensure you have a storage class created by the name 'default', this storage class will be used by the Persistent Volume claims needed for stateful sets.
+ 
+	· To add a storage class store the below YAML file as pks-storageclass.yaml
+	```yaml\kind: StorageClass
+		apiVersion: storage.k8s.io/v1
+		metadata:
+		  name: default
+		  annotations:
+		    storageclass.kubernetes.io/is-default-class: "true"
+		provisioner: kubernetes.io/vsphere-volume
+		parameters:
+		  diskformat: thin
+		  
+ 
+	· `Kubectl apply -f pks-storageclass.yaml`
+ 
 * Deploy tiller:
 
-    helm init
-
-* Add Coreos repo
-
-    helm repo add coreos https://s3-eu-west-1.amazonaws.com/coreos-charts/stable/
+    helm init --upgrade
 
 * Create Monitoring Namespace: 
 
