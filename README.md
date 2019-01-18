@@ -32,7 +32,6 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
   kubectl create serviceaccount --namespace kube-system tiller
   kubectl create clusterrolebinding tiller-clusterrolebinding --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
   
-  kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 
 * Ensure you have a storage class created by the name 'default', this storage class will be used by the Persistent Volume claims needed for stateful sets.
  
@@ -56,7 +55,9 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 
 * Create Monitoring Namespace: 
 
-    kubectl create namespace monitoring
+    `kubectl create namespace monitoring`  
+    `kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'`
+
 
 * Install prometheus from helm chart
 
