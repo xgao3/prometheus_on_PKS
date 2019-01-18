@@ -61,7 +61,7 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 
 * Install prometheus from helm chart
 
-    helm install stable/prometheus-operator --name prometheus --namespace monitoring
+    `helm install stable/prometheus-operator --name prometheus --namespace monitoring`  
     
     make sure following google repo is available if helm install fails     
     `root@cli-vm:~/helm_rback# helm repo list`    
