@@ -62,13 +62,10 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 
     helm install stable/prometheus --name prometheus --namespace monitoring
     
-    make sure following google repo is available
-    
-    root@cli-vm:~/helm_rback# helm repo list
-    
-    NAME    URL
-    
-    stable  https://kubernetes-charts.storage.googleapis.com
+    make sure following google repo is available     
+    `root@cli-vm:~/helm_rback# helm repo list`    
+    `NAME    URL`  
+    `stable  https://kubernetes-charts.storage.googleapis.com`
     
 
      
