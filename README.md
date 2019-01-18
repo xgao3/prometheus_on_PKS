@@ -56,6 +56,9 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 * Create Monitoring Namespace: 
 
     `kubectl create namespace monitoring`  
+    
+* Update namespace to include tiller service account
+
     `kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'`
 
 
