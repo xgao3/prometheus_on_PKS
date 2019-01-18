@@ -59,7 +59,7 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
     `kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'`
 
 
-* Install prometheus from helm chart
+* Install Prometheus Operator using helm chart
 
     `helm install stable/prometheus-operator --name prometheus --namespace monitoring`  
     
