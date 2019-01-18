@@ -52,7 +52,7 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
  
 * Deploy tiller:
 
-    helm init --upgrade
+    `helm init --upgrade`
 
 * Create Monitoring Namespace: 
 
@@ -60,9 +60,9 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 
 * Install prometheus from helm chart
 
-    helm install stable/prometheus --name prometheus --namespace monitoring
+    helm install stable/prometheus-operator --name prometheus --namespace monitoring
     
-    make sure following google repo is available     
+    make sure following google repo is available if helm install fails     
     `root@cli-vm:~/helm_rback# helm repo list`    
     `NAME    URL`  
     `stable  https://kubernetes-charts.storage.googleapis.com`
@@ -71,7 +71,7 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
      
 * If you prefer service type loadbalancer to reach Grafana, edit the service grafana and replace service Type from ‘ClusterIp’ to ‘LoadBalancer’
  
-	`kubectl edit service kube-prometheus-grafana`
+	`kubectl edit service prometheus-grafana`
  
 * Find the external IP address of the ‘grafana’ service
 	`kubectl get svc -n monitoring | grep grafana | awk '{print $4}' | awk -F , '{print $1}'`
