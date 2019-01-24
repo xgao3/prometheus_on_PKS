@@ -35,27 +35,26 @@ kubectl create clusterrolebinding tiller-clusterrolebinding --clusterrole=cluste
 
 * Ensure you have a storage class created by the name 'default', this storage class will be used by the Persistent Volume claims needed for stateful sets.
  
-	· To add a storage class store the below YAML file as pks-storageclass.yaml
-	```yaml
-	     kind: StorageClass
-	     apiVersion: storage.k8s.io/v1
-	     metadata:
-	       name: default
-	       annotations:
-	         storageclass.kubernetes.io/is-default-class: "true"
-	     provisioner: kubernetes.io/vsphere-volume
-	     parameters:
-	       diskformat: thin
+· To add a storage class store the below YAML file as pks-storageclass.yaml
+```yaml
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: default
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: kubernetes.io/vsphere-volume
+parameters:
+  diskformat: thin
 		  
- 
-	· Kubectl apply -f pks-storageclass.yaml
-	```
+· Kubectl apply -f pks-storageclass.yaml
+```
  
 * Download and install the [Helm CLI](https://github.com/helm/helm/releases)
 
 * Deploy tiller:
 
-    `helm init --upgrade`
+`helm init --upgrade`
 
 * Create Monitoring Namespace: 
 
