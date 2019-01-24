@@ -7,7 +7,7 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 * Create a service account for Tiller and bind it to the cluster-admin role by adding the following section to rbac-config.yaml
  
 	```yaml\
-	    apiVersion: v1
+	apiVersion: v1
             kind: ServiceAccount
             metadata:
               name: tiller
