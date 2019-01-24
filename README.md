@@ -1,12 +1,12 @@
 # prometheus_on_PKS
-Instructions to get Prometheus ployed on Kubernetes Cluster operated by PKS
+Instructions to get Prometheus deployed on Kubernetes Cluster operated by PKS
 
 install Prometheus on PKS ( assumption - NSX T Load Balancers are available for type LoadBalancer)
 
 
-* Ensure you have service account tiller added and cluster role binding updated
+* Create a service account for Tiller and bind it to the cluster-admin role by adding the following section to rbac-config.yaml
  
-	· To add, you can copy and paste below YAML into a file (helm_tiller.yaml)
+	· To add, you can copy and paste below YAML into a file (rbac-config.yaml)
 	```yaml\
 	    apiVersion: v1
             kind: ServiceAccount
@@ -27,7 +27,7 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
                 name: cluster-admin
                 apiGroup: ""
  
-  Kubectl apply -f helm_tiller.yaml
+  Kubectl apply -f rbac-config.yaml
   or 
   
   kubectl create serviceaccount --namespace kube-system tiller
@@ -51,6 +51,8 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
  
 	· Kubectl apply -f pks-storageclass.yaml
  
+* Download and install the Helm CLI [https://github.com/helm/helm/releases]
+
 * Deploy tiller:
 
     `helm init --upgrade`
