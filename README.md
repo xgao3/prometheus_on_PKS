@@ -6,7 +6,6 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 
 * Create a service account for Tiller and bind it to the cluster-admin role by adding the following section to rbac-config.yaml
  
-	· To add, you can copy and paste below YAML into a file (rbac-config.yaml)
 	```yaml\
 	    apiVersion: v1
             kind: ServiceAccount
@@ -38,15 +37,15 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
  
 	· To add a storage class store the below YAML file as pks-storageclass.yaml
 	```yaml\
-	        kind: StorageClass
-		apiVersion: storage.k8s.io/v1
-		metadata:
-		  name: default
-		  annotations:
-		    storageclass.kubernetes.io/is-default-class: "true"
-		provisioner: kubernetes.io/vsphere-volume
-		parameters:
-		  diskformat: thin
+	     kind: StorageClass
+	     apiVersion: storage.k8s.io/v1
+	     metadata:
+	       name: default
+	       annotations:
+	         storageclass.kubernetes.io/is-default-class: "true"
+	     provisioner: kubernetes.io/vsphere-volume
+	     parameters:
+	       diskformat: thin
 		  
  
 	· Kubectl apply -f pks-storageclass.yaml
