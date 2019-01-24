@@ -6,7 +6,6 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 
 * Create a service account for Tiller and bind it to the cluster-admin role by adding the following section to rbac-config.yaml
 
- 	·store the below YAML file as rbac-config.yaml
 ```yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -27,11 +26,11 @@ roleRef:
   name: cluster-admin
   apiGroup: ""
  
-  Kubectl apply -f rbac-config.yaml
-  or 
+Kubectl apply -f rbac-config.yaml
+ or 
   
-  kubectl create serviceaccount --namespace kube-system tiller
-  kubectl create clusterrolebinding tiller-clusterrolebinding --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-clusterrolebinding --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
   ```
 
 * Ensure you have a storage class created by the name 'default', this storage class will be used by the Persistent Volume claims needed for stateful sets.
