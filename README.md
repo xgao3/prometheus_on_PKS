@@ -7,7 +7,8 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 * Ensure you have service account tiller added and cluster role binding updated
  
 	· To add, you can copy and paste below YAML into a file (helm_tiller.yaml)
-	```yaml\apiVersion: v1
+	```yaml\
+	    apiVersion: v1
             kind: ServiceAccount
             metadata:
               name: tiller
@@ -36,7 +37,8 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 * Ensure you have a storage class created by the name 'default', this storage class will be used by the Persistent Volume claims needed for stateful sets.
  
 	· To add a storage class store the below YAML file as pks-storageclass.yaml
-	```yaml\kind: StorageClass
+	```yaml\
+	        kind: StorageClass
 		apiVersion: storage.k8s.io/v1
 		metadata:
 		  name: default
