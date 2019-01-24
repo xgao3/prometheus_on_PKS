@@ -5,38 +5,39 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 
 
 * Create a service account for Tiller and bind it to the cluster-admin role by adding the following section to rbac-config.yaml
- 
-	```yaml\
-	    apiVersion: v1
-            kind: ServiceAccount
-            metadata:
-              name: tiller
-              namespace: kube-system
-            ---
-            kind: ClusterRoleBinding
-            apiVersion: rbac.authorization.k8s.io/v1beta1
-            metadata:
-              name: tiller-clusterrolebinding
-            subjects:
-            - kind: ServiceAccount
-              name: tiller
-              namespace: kube-system
-            roleRef:
-                kind: ClusterRole
-                name: cluster-admin
-                apiGroup: ""
+
+ 	·store the below YAML file as rbac-config.yaml
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: tiller-clusterrolebinding
+subjects:
+- kind: ServiceAccount
+  name: tiller
+  namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: ""
  
   Kubectl apply -f rbac-config.yaml
   or 
   
   kubectl create serviceaccount --namespace kube-system tiller
   kubectl create clusterrolebinding tiller-clusterrolebinding --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
-  
+  ```
 
 * Ensure you have a storage class created by the name 'default', this storage class will be used by the Persistent Volume claims needed for stateful sets.
  
 	· To add a storage class store the below YAML file as pks-storageclass.yaml
-	```yaml\
+	```yaml
 	     kind: StorageClass
 	     apiVersion: storage.k8s.io/v1
 	     metadata:
@@ -49,6 +50,7 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
 		  
  
 	· Kubectl apply -f pks-storageclass.yaml
+	```
  
 * Download and install the [Helm CLI](https://github.com/helm/helm/releases)
 
