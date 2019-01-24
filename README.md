@@ -45,16 +45,15 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "true"
 provisioner: kubernetes.io/vsphere-volume
 parameters:
-  diskformat: thin
-		  
+  diskformat: thin  
+  
 · Kubectl apply -f pks-storageclass.yaml
-```
- 
+ ```
 * Download and install the [Helm CLI](https://github.com/helm/helm/releases)
 
 * Deploy tiller:
 
-`helm init --upgrade`
+    `helm init --upgrade`
 
 * Create Monitoring Namespace: 
 
