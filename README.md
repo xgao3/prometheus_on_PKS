@@ -51,7 +51,7 @@ install Prometheus on PKS ( assumption - NSX T Load Balancers are available for 
  
 	· Kubectl apply -f pks-storageclass.yaml
  
-* Download and install the Helm CLI [https://github.com/helm/helm/releases]
+* Download and install the [Helm CLI] (https://github.com/helm/helm/releases)
 
 * Deploy tiller:
 
