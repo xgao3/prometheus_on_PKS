@@ -77,4 +77,4 @@ parameters:
 * Find the external IP address of the ‘grafana’ service
 	`kubectl get svc -n monitoring | grep grafana | awk '{print $4}' | awk -F , '{print $1}'`
  
-* Access `http://<external_IP>` from the web console
+* Access `http://<external_IP>` from the web console - Default Username/Password: admin/prom-operator.
