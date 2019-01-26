@@ -26,7 +26,7 @@ roleRef:
   name: cluster-admin
   apiGroup: ""
  
-Kubectl apply -f rbac-config.yaml
+kubectl apply -f rbac-config.yaml
  or 
   
 kubectl create serviceaccount --namespace kube-system tiller
@@ -47,7 +47,7 @@ provisioner: kubernetes.io/vsphere-volume
 parameters:
   diskformat: thin  
   
-· Kubectl apply -f pks-storageclass.yaml
+· kubectl apply -f pks-storageclass.yaml
  ```
 * Download and install the [Helm CLI](https://github.com/helm/helm/releases)
 
