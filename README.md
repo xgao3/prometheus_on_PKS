@@ -53,7 +53,7 @@ parameters:
 
 * Deploy tiller:
 
-    `helm init --upgrade`
+    `helm init --service-account tiller`
 
 * Create Monitoring Namespace: 
 
