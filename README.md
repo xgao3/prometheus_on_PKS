@@ -58,11 +58,6 @@ parameters:
 * Create Monitoring Namespace: 
 
     `kubectl create namespace monitoring`  
-    
-* Update namespace to include tiller service account
-
-    `kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'`
-
 
 * Install Prometheus Operator using helm chart
 
@@ -77,7 +72,7 @@ parameters:
      
 * If you prefer service type loadbalancer to reach Grafana, edit the service grafana and replace service Type from ‘ClusterIp’ to ‘LoadBalancer’
  
-	`kubectl edit service prometheus-grafana`
+	`kubectl edit service prometheus-grafana -n monitoring`
  
 * Find the external IP address of the ‘grafana’ service
 	`kubectl get svc -n monitoring | grep grafana | awk '{print $4}' | awk -F , '{print $1}'`
