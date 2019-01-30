@@ -175,9 +175,9 @@ grafana:
     enabled: true
     accessModes: ["ReadWriteOnce"]
     size: 1Gi
+```
 
-
-* Install Prometheus Operator using helm chart
+* Install Prometheus Operator using helm chart and reference the custom.yml
 
     `helm install stable/prometheus-operator --name prometheus --namespace monitoring -f custom.yaml`  
     
@@ -189,11 +189,12 @@ grafana:
      
 * If you want to reach prometheus UI
  
-	`kubectl port-forward prometheus-prometheus-oper-prometheus -n monitoring 9090:9090`
+    `kubectl port-forward prometheus-prometheus-oper-prometheus -n monitoring 9090:9090`
  
 * Find the external IP address of the ‘grafana’ service
-	`kubectl get svc -n monitoring | grep  quickstart-nginx-ingress-controller | awk '{print $4}' | awk -F , '{print $1}'`
-	
-* Add above entry to /etc/hosts
 
-* Access `https://grafana.test.example.com/` from the web console - Default Username/Password: admin/VMware1!.
+    `kubectl get svc -n monitoring | grep  quickstart-nginx-ingress-controller | awk '{print $4}' | awk -F , '{print $1}'`
+	
+* To reach the application - Add output of above entry to /etc/hosts
+
+* Access `https://grafana.test.example.com/` from the web console -  Username/Password: admin/VMware1!.
